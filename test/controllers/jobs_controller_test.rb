@@ -3,6 +3,11 @@ require 'test_helper'
 class JobsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @job = jobs(:one)
+    @update = {
+      title: 'test',
+      description: 'testing',
+      salary: 50000
+    }
   end
 
   test "should get index" do
@@ -17,7 +22,7 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create job" do
     assert_difference('Job.count') do
-      post jobs_url, params: { job: {  title: @job. title, description: @job.description, salary: @job.salary } }
+      post jobs_url, params: { job: @update }
     end
 
     assert_redirected_to job_url(Job.last)
@@ -34,7 +39,7 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update job" do
-    patch job_url(@job), params: { job: {  title: @job. title, description: @job.description, salary: @job.salary } }
+    patch job_url(@job), params: { job: @update }
     assert_redirected_to job_url(@job)
   end
 
