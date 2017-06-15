@@ -1,4 +1,6 @@
 class JobsController < ApplicationController
+  include CurrentManager
+  before_action :set_manager, only: [:create]
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   # GET /jobs
@@ -24,7 +26,8 @@ class JobsController < ApplicationController
   # POST /jobs
   # POST /jobs.json
   def create
-    @job = Job.new(job_params)
+    manager = Manager.find(params[:manager_id])
+    @job = @manager.jobs.build(job: job)
 
     respond_to do |format|
       if @job.save
