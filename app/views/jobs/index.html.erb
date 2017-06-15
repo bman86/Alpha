@@ -1,31 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Jobs</h1>
+<h1>Current Openings</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th> title</th>
-      <th>Description</th>
-      <th>Salary</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @jobs.each do |job| %>
-      <tr>
-        <td><%= job. title %></td>
-        <td><%= job.description %></td>
-        <td><%= job.salary %></td>
-        <td><%= link_to 'Show', job %></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+<% @jobs.each do |job| %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+    <td class="list_description">
+      <dl>
+        <dt><%= job.title %></dt>
+        <dd><%= truncate(strip_tags(job.description), length: 80) %></dd>
+      </dl>
+    </td>
+    <td class="list_actions">
+      <%= link_to 'Show', job %><br/>
+      <%= link_to 'Edit', edit_job_path(job) %><br/>
+      <%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </td>
+  </tr>
+<% end %>
 </table>
-
-<br>
-
+<br />
 <%= link_to 'New Job', new_job_path %>
