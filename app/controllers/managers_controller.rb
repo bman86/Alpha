@@ -25,7 +25,6 @@ class ManagersController < ApplicationController
   # POST /managers.json
   def create
     @manager = Manager.new(manager_params)
-    session[:managers_id] = @manager.id
     respond_to do |format|
       if @manager.save
         format.html { redirect_to @manager, notice: 'Manager was successfully created.' }
@@ -70,6 +69,6 @@ class ManagersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def manager_params
-      params.fetch(:manager).permit(:name, :title)
+      params.require(:manager).permit(:name, :title)
     end
 end
