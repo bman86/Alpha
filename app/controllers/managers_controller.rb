@@ -28,7 +28,6 @@ class ManagersController < ApplicationController
 
     respond_to do |format|
       if @manager.save
-        session[:manager_id] = @manager.id
         format.html { redirect_to @manager, notice: 'Manager was successfully created.' }
         format.json { render :show, status: :created, location: @manager }
       else
@@ -56,7 +55,7 @@ class ManagersController < ApplicationController
   # DELETE /managers/1.json
   def destroy
     @manager.destroy
-    @manager = session[:manager_id] = nill
+    @manager = session[:manager_id] = nil
     respond_to do |format|
       format.html { redirect_to managers_url, notice: 'Manager was successfully destroyed.' }
       format.json { head :no_content }
