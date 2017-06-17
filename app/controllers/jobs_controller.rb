@@ -1,6 +1,4 @@
 class JobsController < ApplicationController
-  include CurrentManager
-  before_action :set_manager, only: [:create]
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   # GET /jobs
@@ -26,7 +24,6 @@ class JobsController < ApplicationController
   # POST /jobs
   # POST /jobs.json
   def create
-    #@manager.id = Manager.find(params[:managers_id])
     @job = Job.new(job_params)
 
     respond_to do |format|
@@ -72,6 +69,6 @@ class JobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:title, :description, :salary, :managers_id)
+      params.require(:job).permit(:title, :description, :salary)
     end
 end
