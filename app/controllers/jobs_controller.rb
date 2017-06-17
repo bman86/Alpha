@@ -1,4 +1,6 @@
 class JobsController < ApplicationController
+  include CurrentManager
+  before_action :set_manager_session, only: [:create]
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   # GET /jobs

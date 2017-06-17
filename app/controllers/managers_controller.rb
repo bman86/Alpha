@@ -1,6 +1,7 @@
 class ManagersController < ApplicationController
+  include CurrentManager
   before_action :set_manager, only: [:show, :edit, :update, :destroy]
-
+  after_action :set_manager_session
   # GET /managers
   # GET /managers.json
   def index

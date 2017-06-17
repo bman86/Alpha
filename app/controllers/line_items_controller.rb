@@ -1,6 +1,7 @@
 class LineItemsController < ApplicationController
   include CurrentManager
-  before_action :set_manager, only: [:create]
+  before_action :set_manager_session, only: [:create]
+
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
   # GET /line_items
