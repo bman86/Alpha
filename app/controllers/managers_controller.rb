@@ -25,7 +25,7 @@ class ManagersController < ApplicationController
   # POST /managers.json
   def create
     @manager = Manager.new(manager_params)
-
+    session[:managers_id] = @manager.id
     respond_to do |format|
       if @manager.save
         format.html { redirect_to @manager, notice: 'Manager was successfully created.' }
@@ -55,7 +55,7 @@ class ManagersController < ApplicationController
   # DELETE /managers/1.json
   def destroy
     @manager.destroy
-    @manager = session[:manager_id] = nil
+    session[:managers_id] = nil
     respond_to do |format|
       format.html { redirect_to managers_url, notice: 'Manager was successfully destroyed.' }
       format.json { head :no_content }
@@ -70,6 +70,6 @@ class ManagersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def manager_params
-      params.require(:manager).permit(:name, :title, :jobs)
+      params.fetch(:manager).permit(:name, :title)
     end
 end

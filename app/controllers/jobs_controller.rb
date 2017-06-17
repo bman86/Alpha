@@ -26,7 +26,7 @@ class JobsController < ApplicationController
   # POST /jobs
   # POST /jobs.json
   def create
-    manager = Manager.find(params[:managers_id])
+    #@manager.id = Manager.find(params[:managers_id])
     @job = Job.new(job_params)
 
     respond_to do |format|

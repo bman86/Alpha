@@ -5,6 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Manager.delete_all
+Manager.create!(name: 'Brent Mennen',
+  title: 'CEO')
 Job.delete_all
 Job.create!(title: 'Sales Representative',
   description:
