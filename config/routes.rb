@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'careers#index', as: 'careers_index'
   resources :line_items
   resources :managers
   resources :jobs
